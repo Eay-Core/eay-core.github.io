@@ -1,19 +1,17 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
-
-/** Fades a section in as it enters the viewport, so the page reads top to bottom. */
-export function Reveal({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className={className}
-      initial={reduce ? false : { opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+/**
+ * Lightweight section wrapper. Always renders visible on first paint so no section
+ * can ever get stuck at opacity: 0 across hash navigation, mobile emulators, or SSR.
+ */
+export function Reveal({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  immediate?: boolean;
+  className?: string;
+}) {
+  return <div className={className}>{children}</div>;
 }

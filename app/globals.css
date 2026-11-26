@@ -1,35 +1,83 @@
 @import 'tailwindcss';
 
-/* Theme follows the visitor's system setting; tokens below are the only colors used on the page. */
+/*
+ * Three first-class themes controlled via html[data-theme="ascii" | "dark" | "light"].
+ * Default tokens map to "ascii" (terminal atelier) so static HTML renders cleanly before hydration.
+ */
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 
-  --color-bg: #f7f7f9;
-  --color-surface: #ffffff;
-  --color-raised: #f0f0f4;
-  --color-line: #e3e3ea;
-  --color-ink: #16161d;
-  --color-muted: #5b5b6b;
-  --color-faint: #8a8a99;
-  --color-accent: #6d4fe0;
-  --color-accent-ink: #ffffff;
-  --color-accent-soft: #ece8fd;
+  --color-bg: #090b0f;
+  --color-surface: #0f1218;
+  --color-raised: #151922;
+  --color-line: #232936;
+  --color-ink: #ebe7dc;
+  --color-muted: #9aa1b2;
+  --color-faint: #676f82;
+  --color-accent: #e0a458;
+  --color-accent-ink: #090b0f;
+  --color-accent-soft: #1d1912;
+  --color-ok: #5ec48e;
+  --color-warn: #e07a5f;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0c0c11;
-    --color-surface: #121219;
-    --color-raised: #191922;
-    --color-line: #26262f;
-    --color-ink: #ececf1;
-    --color-muted: #a2a2b3;
-    --color-faint: #747486;
-    --color-accent: #a78bfa;
-    --color-accent-ink: #0c0c11;
-    --color-accent-soft: #1d1830;
-  }
+/* 1. ASCII Art / Terminal Atelier theme */
+:root,
+html[data-theme='ascii'] {
+  color-scheme: dark;
+  --color-bg: #090b0f;
+  --color-surface: #0f1218;
+  --color-raised: #151922;
+  --color-line: #242b38;
+  --color-ink: #ebe7dc;
+  --color-muted: #9aa1b2;
+  --color-faint: #687084;
+  --color-accent: #e0a458;
+  --color-accent-ink: #090b0f;
+  --color-accent-soft: #1b1710;
+  --color-ok: #5ec48e;
+  --color-warn: #e07a5f;
+  --radius-card: 6px;
+  --radius-pill: 6px;
+}
+
+/* 2. Minimalism Cozy Deep Dark theme */
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #0d0e13;
+  --color-surface: #13151d;
+  --color-raised: #1a1d28;
+  --color-line: #272b38;
+  --color-ink: #eeeef2;
+  --color-muted: #a1a4b5;
+  --color-faint: #707488;
+  --color-accent: #a78bfa;
+  --color-accent-ink: #0d0e13;
+  --color-accent-soft: #1d1831;
+  --color-ok: #6ee7b7;
+  --color-warn: #fb7185;
+  --radius-card: 18px;
+  --radius-pill: 9999px;
+}
+
+/* 3. Minimalism Cozy Light theme */
+html[data-theme='light'] {
+  color-scheme: light;
+  --color-bg: #f8f7f4;
+  --color-surface: #ffffff;
+  --color-raised: #f1efe9;
+  --color-line: #e3e0d8;
+  --color-ink: #17171e;
+  --color-muted: #585868;
+  --color-faint: #848494;
+  --color-accent: #5b46d9;
+  --color-accent-ink: #ffffff;
+  --color-accent-soft: #efecfd;
+  --color-ok: #15803d;
+  --color-warn: #be123c;
+  --radius-card: 18px;
+  --radius-pill: 9999px;
 }
 
 html {
@@ -37,6 +85,29 @@ html {
   color: var(--color-ink);
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+/* ASCII theme uses monospace typography and crisp terminal surfaces */
+html[data-theme='ascii'] body {
+  font-family: var(--font-mono);
+  background-image: radial-gradient(color-mix(in srgb, var(--color-line) 55%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+html[data-theme='dark'] body,
+html[data-theme='light'] body {
+  font-family: var(--font-sans);
+}
+
+.theme-card {
+  border-radius: var(--radius-card);
+  transition: background-color 220ms ease, border-color 220ms ease, border-radius 220ms ease;
+}
+
+.theme-pill {
+  border-radius: var(--radius-pill);
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, border-radius 180ms ease;
 }
 
 ::selection {

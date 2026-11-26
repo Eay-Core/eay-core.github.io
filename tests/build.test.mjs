@@ -11,7 +11,9 @@ test('no em or en dashes in visible copy', () => {
 });
 
 test('every local asset referenced by the page exists', () => {
-  const refs = [...html.matchAll(/(?:src|href)="(\/[^"#?]+)"/g)].map((m) => m[1]).filter((p) => !p.startsWith('/_next/'));
+  const refs = [...html.matchAll(/(?:src|href)="(\/[^"#?]+)"/g)]
+    .map((m) => m[1])
+    .filter((p) => !p.startsWith('/_next/'));
   assert.ok(refs.length > 0);
   for (const ref of new Set(refs)) {
     const path = ref.endsWith('/') ? `${ref}index.html` : ref;
@@ -27,4 +29,10 @@ test('in-page anchors point at sections that exist', () => {
 
 test('private eay-core is not linked and has no install that would 404', () => {
   assert.ok(!html.includes('github.com/Eay-Core/eay-core"'), 'links to private repo');
+});
+
+test('renders all three theme modes and interactive failover controls', () => {
+  assert.ok(html.includes('data-theme="ascii"'), 'missing default ascii theme attribute');
+  assert.ok(html.includes('Simulate 429'), 'missing interactive failover button');
+  assert.ok(html.includes('Visual theme'), 'missing theme switcher radiogroup');
 });
