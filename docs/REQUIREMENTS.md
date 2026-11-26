@@ -131,7 +131,7 @@ Menjelaskan kapabilitas inti `eay-core` yang membedakannya dari proxy biasa dala
 ## 5. Pre-Launch Checklist
 
 ### Sebelum Share Private Preview (`CORE_PUBLIC = false`)
-- [ ] Isi `DISCORD_URL` dengan permanent invite link server Discord EAY di `lib/content.ts`.
+- [x] Isi `DISCORD_URL` dengan permanent invite link server Discord EAY di `lib/content.ts`.
 - [ ] Buat & pasang `public/og.png` (`1200x630`) di `app/layout.tsx`.
 - [ ] Tambah tombol Copy di `components/CodeBlock.tsx`.
 - [ ] Pastikan `npm run lint && npm run build && npm test` lulus.

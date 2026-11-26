@@ -9,7 +9,7 @@ export const ORG_URL = 'https://github.com/Eay-Core';
  * the site links to Discord for early access instead of install commands that would 404.
  */
 export const CORE_PUBLIC = false;
-export const DISCORD_URL = 'https://discord.gg/'; // replace with the server's permanent invite link
+export const DISCORD_URL = 'https://discord.gg/vPPvgH6jAv';
 export const GATEWAY_URL = 'http://127.0.0.1:20129';
 
 export type ProductId = 'core' | 'workspace' | 'battle' | 'code';

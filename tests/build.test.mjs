@@ -35,4 +35,5 @@ test('renders all three theme modes and interactive failover controls', () => {
   assert.ok(html.includes('data-theme="ascii"'), 'missing default ascii theme attribute');
   assert.ok(html.includes('Simulate 429'), 'missing interactive failover button');
   assert.ok(html.includes('Visual theme'), 'missing theme switcher radiogroup');
+  assert.ok(!html.includes('href="https://discord.gg/"'), 'empty placeholder discord invite link');
 });
